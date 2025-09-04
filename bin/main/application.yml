@@ -1,0 +1,21 @@
+server:
+  port: 9487
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://james0530:james1674@clusterschoolproject.7rgd67j.mongodb.net/keelung-sights?retryWrites=true&w=majority&appName=Clusterschoolproject
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: when-authorized
+  
+logging:
+  level:
+    keelung: DEBUG
+    org.springframework.web: INFO
