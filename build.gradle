@@ -21,3 +21,14 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
+
+// 禁用 plain JAR，只保留 Spring Boot 可執行 JAR
+jar {
+    enabled = false
+    archiveClassifier = ''
+}
+
+// 設定 bootJar 的檔案名稱
+bootJar {
+    archiveFileName = 'app.jar'
+}
