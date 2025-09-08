@@ -21,7 +21,7 @@ public class SightService {
         if (zone == null || zone.isBlank()) {
             throw new ZoneNotFoundException("zone 不能為空");
         }
-        return sightRepository.findByZone(zone.trim());
+        return sightRepository.findByZone(zone.trim()); 
     }
 
     /** 新增一筆 */

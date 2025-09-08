@@ -1,38 +1,26 @@
-# 超簡單的 Docker 配置 - 前後端一起打包
-FROM openjdk:11-jdk-slim
-
-# 安裝 Node.js 和 unzip
-RUN apt-get update && \
-    apt-get install -y curl unzip && \
-    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs && \
-    rm -rf /var/lib/apt/lists/*
-
-# 安裝 Gradle
-RUN curl -L https://services.gradle.org/distributions/gradle-7.6-bin.zip -o gradle.zip && \
-    unzip gradle.zip && \
-    mv gradle-7.6 /opt/gradle && \
-    rm gradle.zip
-ENV PATH=/opt/gradle/bin:$PATH
-
+# 建構階段
+FROM gradle:8.13-jdk11 AS build
 WORKDIR /app
 
-# 複製所有文件
-COPY . .
+# 複製 Gradle 配置檔案（利用快取）
+COPY build.gradle .
+COPY gradle/ gradle/
 
-# 建構前端
-WORKDIR /app/frontend
-RUN npm install
-RUN npm run build
+# 下載依賴（這層會被快取）
+RUN gradle dependencies --no-daemon
 
-# 把前端建構結果移到 Spring Boot 的靜態資源目錄
-RUN mkdir -p /app/src/main/resources/static
-RUN cp -r /app/frontend/dist/* /app/src/main/resources/static/
+# 複製源碼並建構
+COPY src/ src/
+RUN gradle build -x test --no-daemon
 
-# 回到主目錄建構後端
+# 運行階段  
+FROM openjdk:11-jre-slim
 WORKDIR /app
-RUN gradle build -x test
+
+# 只複製建構好的 JAR 檔案
+COPY --from=build /app/build/libs/app.jar app.jar
 
 # 執行應用程式
 EXPOSE 9487
-CMD ["java", "-jar", "build/libs/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
