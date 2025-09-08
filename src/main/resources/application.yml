@@ -8,20 +8,6 @@ spring:
       # 先用你貼的連線字串；建議之後改成 ${MONGODB_URI}
       uri: mongodb+srv://james0530:james1674@clusterschoolproject.7rgd67j.mongodb.net/keelung-sights?retryWrites=true&w=majority&appName=Clusterschoolproject
 
-management:
-  metrics:
-    binders:
-      # 關掉 ProcessorMetrics，避免 Micrometer 在容器裡 NPE
-      processor:
-        enabled: false
-  endpoints:
-    web:
-      exposure:
-        include: health
-  endpoint:
-    health:
-      show-details: when-authorized
-
 logging:
   level:
     keelung: DEBUG
