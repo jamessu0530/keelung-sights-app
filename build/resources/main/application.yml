@@ -1,11 +1,13 @@
 server:
-  port: 9487
+  # Railway 會注入 PORT，沒有時（本機）才用 9487
+  port: ${PORT:9487}
 
 spring:
   data:
     mongodb:
+      # 先用你貼的連線字串；建議之後改成 ${MONGODB_URI}
       uri: mongodb+srv://james0530:james1674@clusterschoolproject.7rgd67j.mongodb.net/keelung-sights?retryWrites=true&w=majority&appName=Clusterschoolproject
-  
+
 logging:
   level:
     keelung: DEBUG

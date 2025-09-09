@@ -43,13 +43,16 @@ public class SightService {
     public void initializeDatabaseWithCrawledData() {
         String[] zones = {"中正", "七堵", "暖暖", "仁愛", "中山", "安樂", "信義"};
         for (String zone : zones) {
-            try {
-                List<Sight> sights = crawlerService.getSightsByZone(zone);
-                if (!sights.isEmpty()) {
-                    sightRepository.saveAll(sights);
+            for (int attempt = 0; attempt < 2; attempt++) {
+                try {
+                    List<Sight> sights = crawlerService.getSightsByZone(zone);
+                    if (!sights.isEmpty()) {
+                        sightRepository.saveAll(sights);
+                    }
+                    break; // 成功就跳出重試迴圈
+                } catch (Exception e) {
+                    System.err.println("爬取 " + zone + " 區失敗: " + e.getMessage());
                 }
-            } catch (Exception e) {
-                System.err.println("爬取 " + zone + " 區失敗: " + e.getMessage());
             }
         }
     }
