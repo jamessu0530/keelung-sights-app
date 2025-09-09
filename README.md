@@ -5,29 +5,46 @@
 ## 本地開發
 
 **後端啟動：**
+
 ```bash
 ./gradlew bootRun
 ```
-後端會跑在 http://localhost:9487
+
+後端會跑在 <http://localhost:9487>
 
 **前端啟動：**
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-前端會跑在 http://localhost:5173
+
+前端會跑在 <http://localhost:5173>
 
 **API 測試：**
-```
+
+```http
 GET http://localhost:9487/api/sights?zone=中正
 ```
 
 **常見問題：**
+
 如果後端啟動失敗顯示 "Port 9487 is already in use"：
+
 ```bash
 lsof -i :9487        # 查看佔用程序
 kill [PID]           # 殺掉該程序
+```
+
+如果出現 "Unsupported class file major version 67" 錯誤：
+
+- 這是Java版本不相容問題
+- Spring Boot 2.7.18 不支援 Java 23
+- 請使用 Java 21 或更低版本：
+
+```bash
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 ```
 
 ## Docker 部署
