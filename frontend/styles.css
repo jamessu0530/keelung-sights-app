@@ -4,6 +4,7 @@ body {
   color: white;
   padding: 10px;
   text-align: center;
+  font-family: 'Arial', sans-serif;
 }
 
 input {
@@ -12,14 +13,42 @@ input {
   border: 1px solid #4a9d5f;
   padding: 10px 20px;
   margin: 10px;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #90ee90;
+  box-shadow: 0 0 0 2px rgba(144, 238, 144, 0.2);
 }
 
 button {
-  background-color: #2e7d47;
+  background-color: #0d2013;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   margin: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+button:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* 標題容器樣式 */
@@ -40,4 +69,230 @@ button {
 .title-wrapper {
   width: 100%;
   height: 100%;
+}
+
+/* 區域選擇區塊 */
+.zones-container {
+  margin: 30px 0;
+  padding: 20px;
+}
+
+.zones-container h2 {
+  margin-bottom: 20px;
+  color: #90ee90;
+  font-size: 24px;
+}
+
+/* 區域按鈕網格 */
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 區域按鈕樣式 */
+.zone-button {
+  background: linear-gradient(135deg, #2e7d47, #3a9458);
+  color: white;
+  border: 2px solid #4a9d5f;
+  padding: 15px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zone-button:hover {
+  background: linear-gradient(135deg, #3a9458, #4caf69);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  border-color: #90ee90;
+}
+
+.zone-button.active {
+  background: linear-gradient(135deg, #90ee90, #70dd70);
+  color: #0d4a2d;
+  border-color: #b0ffb0;
+  transform: translateY(-2px);
+}
+
+.zone-button:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  border-color: #888;
+}
+
+/* 載入和錯誤狀態 */
+.loading-container, .error-container {
+  margin: 20px 0;
+  padding: 15px;
+}
+
+.loading-container {
+  background: rgba(144, 238, 144, 0.1);
+  border: 2px solid #90ee90;
+  border-radius: 10px;
+}
+
+.error-container {
+  background: rgba(255, 100, 100, 0.1);
+  border: 2px solid #ff6464;
+  border-radius: 10px;
+  color: #ff8888;
+}
+
+/* 景點容器 */
+.sights-container {
+  margin: 30px 0;
+  padding: 0 20px;
+}
+
+.sights-container h3 {
+  color: #90ee90;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+/* 景點網格 - 響應式設計 */
+.sights-grid {
+  display: grid;
+  gap: 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 桌面版：一行三個景點卡片 */
+@media (min-width: 768px) {
+  .sights-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 手機版：一行一個景點卡片 */
+@media (max-width: 767px) {
+  .sights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .zones-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .zone-button {
+    font-size: 16px;
+    padding: 12px 15px;
+    min-height: 50px;
+  }
+}
+
+/* 景點卡片樣式 */
+.sight-card {
+  background: linear-gradient(145deg, #1e5a3e, #2e7d47);
+  border: 2px solid #4a9d5f;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.sight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  border-color: #90ee90;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card-header h4 {
+  color: #90ee90;
+  margin: 0;
+  font-size: 20px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.category-tag {
+  background: rgba(144, 238, 144, 0.2);
+  color: #90ee90;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #90ee90;
+}
+
+.card-content p {
+  margin: 10px 0;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+.address-btn {
+  background: linear-gradient(135deg, #4caf69, #5cbf73);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 15px 0;
+}
+
+.address-btn:hover {
+  background: linear-gradient(135deg, #5cbf73, #6dd382);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.image-container {
+  margin: 15px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.05);
+}
+
+.description {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(144, 238, 144, 0.3);
+}
+
+.description p {
+  color: #d0d0d0;
+  line-height: 1.6;
+  font-size: 14px;
 }
