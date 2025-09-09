@@ -11,3 +11,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'org.jsoup:jsoup:1.19.1'
 }
+
+// 設定 JAR 檔案名稱
+bootJar {
+    archiveFileName = 'app.jar'
+}

@@ -34,5 +34,5 @@ RUN gradle build -x test
 
 # 執行應用程式
 EXPOSE 9487
-CMD ["java", "-jar", "build/libs/*.jar"]
+CMD ["java", "-jar", "build/libs/app.jar"]
 
