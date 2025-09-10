@@ -24,8 +24,8 @@ npm run dev
 
 **API 測試：**
 
-```http
-GET http://localhost:9487/api/sights?zone=中正
+```h?zone=中正ttp
+GET http://localhost:9487/api/sights
 ```
 
 **常見問題：**

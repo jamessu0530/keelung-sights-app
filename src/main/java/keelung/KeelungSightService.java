@@ -1,14 +1,14 @@
 package keelung;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class KeelungSightService {
@@ -20,7 +20,7 @@ public class KeelungSightService {
         }
 
         String startUrl = BASE_URL + "/tourguide/taiwan/keelungcity/";
-        Document doc = Jsoup.connect(startUrl).get();
+        Document doc = Jsoup.connect(startUrl).timeout(180000).get();
         Elements links = doc.select("a[href]");
 
         String zoneUrl = null;
@@ -39,7 +39,7 @@ public class KeelungSightService {
             throw new ZoneNotFoundException("找不到該行政區: " + zoneText);
         }
 
-        Document zoneDoc = Jsoup.connect(zoneUrl).get();
+        Document zoneDoc = Jsoup.connect(zoneUrl).timeout(180000).get();
         Element guidePoint = zoneDoc.getElementById("guide-point");
         if (guidePoint == null) {
             return List.of();
@@ -60,7 +60,7 @@ public class KeelungSightService {
     }
 
     private Sight getItem(String url, String zone) throws IOException {
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).timeout(180000).get();
         Sight sight = new Sight();
         sight.setZone(zone);
         // 安全地取得 sightName，避免 NullPointerException
