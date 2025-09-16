@@ -133,6 +133,10 @@ function App(): JSX.Element {
                     </div>
                   )}
                   
+                  {sight.photoURL === "404無照片" && (
+                    <p>404無照片</p>
+                  )}
+                  
                   <div className="description">
                     <p>{sight.description}</p>
                   </div>
