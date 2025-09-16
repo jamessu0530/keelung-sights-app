@@ -127,7 +127,7 @@ function App(): JSX.Element {
                     <ShinyText text="🗺️ 查看地圖" disabled={false} speed={3} />
                   </button>
                   
-                  {sight.photoURL && (
+                  {sight.photoURL && sight.photoURL !== "404無照片" && (
                     <div className="image-container">
                       <img src={sight.photoURL} alt={sight.sightName} loading="lazy" />
                     </div>
