@@ -22,7 +22,7 @@ function App(): JSX.Element {
   // 基隆七個區域
   const zones = ['中山', '信義', '仁愛', '中正', '安樂', '七堵', '暖暖']
 
-  const fetchData = async (zone: string): Promise<void> => {
+  const loadSights = async (zone: string): Promise<void> => {
     setLoading(true)
     setError('')
     setSelectedZone(zone)
@@ -44,7 +44,7 @@ function App(): JSX.Element {
     }
   }
 
-  const openGoogleMaps = (address: string) => {
+  const openMap = (address: string) => {
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
     window.open(googleMapsUrl, '_blank')
   }
@@ -77,7 +77,7 @@ function App(): JSX.Element {
             <button 
               key={zone}
               className={`zone-button ${selectedZone === zone ? 'active' : ''}`}
-              onClick={() => fetchData(zone)}
+              onClick={() => loadSights(zone)}
               disabled={loading}
             >
               <ShinyText 
@@ -122,7 +122,7 @@ function App(): JSX.Element {
                   
                   <button 
                     className="address-btn"
-                    onClick={() => openGoogleMaps(sight.address)}
+                    onClick={() => openMap(sight.address)}
                   >
                     <ShinyText text="🗺️ 查看地圖" disabled={false} speed={3} />
                   </button>

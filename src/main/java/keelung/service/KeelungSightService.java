@@ -17,10 +17,6 @@ public class KeelungSightService {
     private static final String BASE_URL = "https://www.travelking.com.tw";
 
     public List<Sight> getSightsByZone(String zone) throws IOException {
-        if (zone == null || zone.isBlank()) {
-            return List.of(); // 回傳空 List，讓 Controller 處理
-        }
-
         String startUrl = BASE_URL + "/tourguide/taiwan/keelungcity/";
         Document doc = Jsoup.connect(startUrl).timeout(180000).get();
         Elements links = doc.select("a[href]");
