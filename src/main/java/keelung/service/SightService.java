@@ -1,8 +1,11 @@
-package keelung;
+package keelung.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import keelung.model.Sight;
+import keelung.repository.SightRepository;
 
 @Service
 public class SightService {
@@ -16,11 +19,8 @@ public class SightService {
         this.crawlerService = crawlerService;
     }
 
-    /** 依區域查詢；zone 不能為空 */
+    /** 依區域查詢 */
     public List<Sight> getSightsByZone(String zone) {
-        if (zone == null || zone.isBlank()) {
-            throw new ZoneNotFoundException("zone 不能為空");
-        }
         return sightRepository.findByZone(zone.trim()); 
     }
 

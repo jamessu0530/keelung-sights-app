@@ -1,4 +1,4 @@
-package keelung;
+package keelung.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

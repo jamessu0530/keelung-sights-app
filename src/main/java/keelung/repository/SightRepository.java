@@ -1,9 +1,11 @@
-package keelung;
+package keelung.repository;
+
+import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import keelung.model.Sight;
 
 @Repository
 public interface SightRepository extends MongoRepository<Sight, String> {

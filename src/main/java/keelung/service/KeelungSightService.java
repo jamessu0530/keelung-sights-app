@@ -1,4 +1,4 @@
-package keelung;
+package keelung.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,13 +10,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
+import keelung.model.Sight;
+
 @Service
 public class KeelungSightService {
     private static final String BASE_URL = "https://www.travelking.com.tw";
 
     public List<Sight> getSightsByZone(String zone) throws IOException {
         if (zone == null || zone.isBlank()) {
-            throw new ZoneNotFoundException("zone 不能為空");
+            return List.of(); // 回傳空 List，讓 Controller 處理
         }
 
         String startUrl = BASE_URL + "/tourguide/taiwan/keelungcity/";
@@ -36,7 +38,7 @@ public class KeelungSightService {
         }
 
         if (zoneUrl == null) {
-            throw new ZoneNotFoundException("找不到該行政區: " + zoneText);
+            return List.of(); // 找不到區域，回傳空 List
         }
 
         Document zoneDoc = Jsoup.connect(zoneUrl).timeout(180000).get();

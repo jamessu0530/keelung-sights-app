@@ -24,7 +24,7 @@ npm run dev
 
 **API 測試：**
 
-```h?zone=中正ttp
+```
 GET http://localhost:9487/api/sights
 ```
 
@@ -55,3 +55,11 @@ docker run -p 9487:9487 keelung-app
 ```
 
 **註：** MongoDB 已經設定好連到 Atlas，不用另外裝資料庫。
+
+
+
+測試雲端部署純後端  
+[https://keelung-sights-app-production.up.railway.app/api/sights?zone=中正](https://keelung-sights-app-production.up.railway.app/api/sights?zone=中正)
+
+測試雲端部署  
+[https://keelung-sights-app-production.up.railway.app/](https://keelung-sights-app-production.up.railway.app/)
