@@ -71,7 +71,8 @@ public class KeelungSightService {
         Element categoryEl = doc.selectFirst("span[property='rdfs:label'] strong");
         sight.setCategory(categoryEl != null ? categoryEl.text() : "");
         Element imageEl = doc.selectFirst("meta[itemprop=image]");
-        sight.setPhotoURL(imageEl != null ? imageEl.attr("content") : "");
+        String photoURL = imageEl != null ? imageEl.attr("content") : "";
+        sight.setPhotoURL(photoURL.isEmpty() ? "404無照片" : photoURL);
         Element descEl = doc.selectFirst("meta[itemprop=description]");
         sight.setDescription(descEl != null ? descEl.attr("content") : "");
         Element addrEl = doc.selectFirst("meta[itemprop=address]");

@@ -25,7 +25,7 @@ npm run dev
 **API 測試：**
 
 ```
-GET http://localhost:9487/api/sights
+GET http://localhost:9487/api/sights?zone=%E4%BF%A1%E7%BE%A9
 ```
 
 **常見問題：**
